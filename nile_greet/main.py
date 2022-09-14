@@ -2,21 +2,20 @@
 import click
 from nile.nre import NileRuntimeEnvironment
 
-
 # Decorate the method that will be the command name with `click.command`
 @click.command()
-@click.argument("a", type=int)
-@click.argument("b", type=int)
+@click.argument("contract_name", type=str)
+@click.argument("contract_alias", type=str)
 # You can define custom parameters as defined in `click`: https://click.palletsprojects.com/en/7.x/options/
-def greet(a, b):
+def greet(contract_name, contract_alias):
     # Help message to show with the command
     """
     Subcommand plugin that does something.
     """
     # Done! Now implement your custom functionality in the command
-    click.echo(f"Hello! I'm a Nile plugin with ${a} and ${b}")
+    click.echo(f"contract_name ${contract_name}")
+    click.echo(f"contract_alias ${contract_alias}")
     nre = NileRuntimeEnvironment()
 
-    address, abi = nre.deploy("contract", alias="my_contract")
+    address, abi = nre.deploy(contract_name, alias=contract_alias)
     print(abi, address)
-    return a + b
