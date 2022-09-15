@@ -16,4 +16,7 @@ def greet(contract_name):
     nre = NileRuntimeEnvironment()
 
     hash = nre.declare(contract_name)
-    print(f"my hash is {hash}")
+    print(f"implementation hash is {hash}")
+
+    a, b = nre.deploy("Proxy", arguments=[hash])
+    print(f"a b is {a} ${b}")
