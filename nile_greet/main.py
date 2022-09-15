@@ -15,5 +15,5 @@ def greet(contract_name):
     click.echo(f"contract_name ${contract_name}")
     nre = NileRuntimeEnvironment()
 
-    address, abi = nre.deploy(contract_name)
-    print(abi, address)
+    hash = nre.declare(contract_name)
+    print(f"my hash is {hash}")
