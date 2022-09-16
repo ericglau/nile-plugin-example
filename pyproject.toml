@@ -43,4 +43,5 @@ flake8 = "^3.9.2"
 cairo-nile = "^0.8.2"
 [tool.poetry.plugins."nile_plugins"]
 # Here you specify you command name and location <command_name> = <package_method_location>
-"deploy_proxy" = "nile_upgrades.main.deploy_proxy"
+"deploy_proxy" = "nile_upgrades.deploy_proxy.deploy_proxy"
+"upgrade_proxy" = "nile_upgrades.upgrade_proxy.upgrade_proxy"
