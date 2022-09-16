@@ -5,7 +5,7 @@ requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "nile_greet"
+name = "nile_upgrades"
 version = "0.1.0"
 description = "Nile plugin for greeting"
 readme = "README.md"
@@ -43,4 +43,4 @@ flake8 = "^3.9.2"
 cairo-nile = "^0.8.2"
 [tool.poetry.plugins."nile_plugins"]
 # Here you specify you command name and location <command_name> = <package_method_location>
-"greet" = "nile_greet.main.greet"
+"deploy_proxy" = "nile_upgrades.main.deploy_proxy"

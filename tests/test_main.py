@@ -1,5 +1,5 @@
-from nile_greet.main import greet
+from nile_upgrades.main import deploy_proxy
 
 
 def test_main():
-    assert callable(greet)
+    assert callable(deploy_proxy)

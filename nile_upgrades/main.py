@@ -6,7 +6,7 @@ from nile.nre import NileRuntimeEnvironment
 @click.command()
 @click.argument("contract_name", type=str)
 # You can define custom parameters as defined in `click`: https://click.palletsprojects.com/en/7.x/options/
-def greet(contract_name):
+def deploy_proxy(contract_name):
     # Help message to show with the command
     """
     Subcommand plugin that does something.
