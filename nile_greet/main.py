@@ -12,11 +12,16 @@ def greet(contract_name):
     Subcommand plugin that does something.
     """
     # Done! Now implement your custom functionality in the command
-    click.echo(f"contract_name ${contract_name}")
+    click.echo(f"contract_name {contract_name}")
     nre = NileRuntimeEnvironment()
 
     hash = nre.declare(contract_name)
-    print(f"implementation hash is {hash}")
+    click.echo(f"implementation hash is {hash}")
 
-    a, b = nre.deploy("Proxy", arguments=[hash])
-    print(f"a b is {a} ${b}")
+    addr, abi = nre.deploy("Proxy", arguments=[hash])
+    click.echo(f"address, abi is {addr} ${abi}")
+
+    nre.invoke(addr, "increase_balance", params=['1'], abi='artifacts/abis/contract.json')
+
+    result = nre.call(addr, "get_balance", abi='artifacts/abis/contract.json')
+    click.echo(f"result: {result}")
