@@ -25,13 +25,11 @@ def upgrade_proxy(proxy_address, contract_name):
         hash = e.hash
         click.echo(f"Implementation with hash {hash} already exists")
 
-    # TODO check that new impl has upgrade function
-
     click.echo(f"Upgrading proxy...")
     nre.invoke(proxy_address, "upgrade", params=[hash])
     click.echo(f"Proxy upgraded to implementation with hash {hash}")
 
-    deployments.update(proxy_address, f"artifacts/abis/{contract_name}.json", "localhost", alias=None)
+    deployments.update(proxy_address, f"artifacts/abis/{contract_name}.json", nre.network, alias=None)
 
 def updateDeployment(file, proxy_address, contract_name):
     for line in fileinput.input(file, inplace=1):

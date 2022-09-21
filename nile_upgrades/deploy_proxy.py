@@ -1,6 +1,5 @@
 import click
 from nile.nre import NileRuntimeEnvironment
-from nile.common import ABIS_DIRECTORY
 from nile.deployments import HashExistsException
 import os
 
@@ -30,7 +29,7 @@ def deploy_proxy(contract_name):
 
 
     click.echo(f"Deploying upgradeable proxy...")
-    overriding_abi = f"{ABIS_DIRECTORY}/{contract_name}.json";
+    overriding_abi = f"artifacts/abis/{contract_name}.json";
     addr, abi = nre.deploy("Proxy", arguments=[hash], overriding_path=overriding_path, overriding_abi=overriding_abi)
     click.echo(f"Proxy deployed to address {addr}, abi {abi}")
 
