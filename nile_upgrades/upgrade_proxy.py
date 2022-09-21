@@ -21,3 +21,6 @@ def upgrade_proxy(proxy_address, contract_name):
     click.echo(f"Upgrading proxy...")
     nre.invoke(proxy_address, "upgrade", params=[hash])
     click.echo(f"Proxy upgraded to implementation with hash {hash}")
+
+    # Update deployments with new abi
+    
