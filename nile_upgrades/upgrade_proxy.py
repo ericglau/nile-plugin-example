@@ -19,5 +19,5 @@ def upgrade_proxy(proxy_address, contract_name):
     # TODO check that new impl has upgrade function
 
     click.echo(f"Upgrading proxy...")
-    nre.invoke(proxy_address, "upgrade", params=[hash], abi='artifacts/abis/contract.json')
+    nre.invoke(proxy_address, "upgrade", params=[hash])
     click.echo(f"Proxy upgraded to implementation with hash {hash}")
