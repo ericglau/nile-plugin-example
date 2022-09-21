@@ -1,6 +1,9 @@
 import click
 from nile.nre import NileRuntimeEnvironment
 
+import fileinput
+import sys
+
 @click.command()
 @click.argument("proxy_address", type=str)
 @click.argument("contract_name", type=str)
@@ -23,4 +26,10 @@ def upgrade_proxy(proxy_address, contract_name):
     click.echo(f"Proxy upgraded to implementation with hash {hash}")
 
     # Update deployments with new abi
-    
+    replaceAll("localhost.deployments.txt","artifacts/abis/contract.json","artifacts/abis/contract_v2.json")
+
+def replaceAll(file,searchExp,replaceExp):
+    for line in fileinput.input(file, inplace=1):
+        if searchExp in line:
+            line = line.replace(searchExp,replaceExp)
+        sys.stdout.write(line)
