@@ -26,10 +26,10 @@ def upgrade_proxy(proxy_address, contract_name):
     click.echo(f"Proxy upgraded to implementation with hash {hash}")
 
     # Update deployments with new abi
-    replaceAll("localhost.deployments.txt","artifacts/abis/contract.json","artifacts/abis/contract_v2.json")
+    updateDeployment("localhost.deployments.txt", proxy_address, contract_name)
 
-def replaceAll(file,searchExp,replaceExp):
+def updateDeployment(file, proxy_address, contract_name):
     for line in fileinput.input(file, inplace=1):
-        if searchExp in line:
-            line = line.replace(searchExp,replaceExp)
+        if proxy_address in line:
+            line = f"{proxy_address}:artifacts/abis/{contract_name}.json"
         sys.stdout.write(line)
