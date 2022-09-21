@@ -1,6 +1,7 @@
 import click
 from nile.nre import NileRuntimeEnvironment
 from nile.common import ABIS_DIRECTORY
+from nile.deployments import HashExistsException
 import os
 
 @click.command()
@@ -14,8 +15,13 @@ def deploy_proxy(contract_name):
     nre = NileRuntimeEnvironment()
 
     click.echo(f"Declaring implementation {contract_name}...")
-    hash = nre.declare(contract_name)
-    click.echo(f"Implementation declared with hash {hash}")
+    hash = None
+    try:
+        hash = nre.declare(contract_name)
+        click.echo(f"Implementation declared with hash {hash}")
+    except HashExistsException as e:
+        hash = e.hash
+        click.echo(f"Implementation with hash {hash} already exists")
 
     pt = os.path.dirname(os.path.realpath(__file__)).replace("/nile_upgrades", "")
     click.echo(f"pt: {pt}")
