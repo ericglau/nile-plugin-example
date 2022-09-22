@@ -9,7 +9,6 @@ import sys
 @click.argument("proxy_address", type=str)
 @click.argument("contract_name", type=str)
 def upgrade_proxy(proxy_address, contract_name):
-    # Help message
     """
     Upgrade a proxy to a different implementation contract.
     """
